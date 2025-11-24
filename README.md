@@ -156,6 +156,184 @@ Authorization: Bearer <your_token>
 
 ---
 
+## 📘 API Documentation (Detailed)
+
+## 🔹 Auth Routes
+
+### **POST `/api/auth/register`**
+Create a new user.
+
+**Request Body**
+```json
+{
+    "name": "Manan",
+    "email": "manan@example.com",
+    "password": "yourpassword"
+}
+```
+
+**Success Response**
+```json
+{
+    "message": "User registered successfully"
+}
+```
+
+---
+
+### **POST `/api/auth/login`**
+Authenticate user & return JWT token.
+
+**Request Body**
+```json
+{
+    "email": "manan@example.com",
+    "password": "yourpassword"
+}
+```
+
+**Success Response**
+```json
+{
+    "token": "JWT_TOKEN_HERE",
+    "user": {
+        "id": 1,
+        "name": "Manan",
+        "email": "manan@example.com"
+    }
+}
+```
+
+---
+
+## 🔹 User Routes
+
+### **GET `/api/user/profile`**
+Fetch the authenticated user.
+
+**Headers**
+```
+Authorization: Bearer <token>
+```
+
+**Success Response**
+```json
+{
+    "id": 1,
+    "name": "Manan",
+    "email": "manan@example.com"
+}
+```
+
+---
+
+### **PUT `/api/user/profile`**
+Update user profile.
+
+**Headers**
+```
+Authorization: Bearer <token>
+```
+
+**Request Body**
+```json
+{
+    "name": "New Name"
+}
+```
+
+**Success Response**
+```json
+{
+    "message": "Profile updated successfully"
+}
+```
+
+---
+
+## 🔹 Task Routes (Detailed)
+
+### **GET `/api/tasks`**
+Fetch all tasks for the logged-in user.
+
+**Headers**
+```
+Authorization: Bearer <token>
+```
+
+**Success Response**
+```json
+[
+    {
+        "id": 1,
+        "title": "First Task",
+        "description": "Optional description",
+        "created_at": "2025-02-10T12:00:00.000Z"
+    }
+]
+```
+
+---
+
+### **POST `/api/tasks`**
+Create a new task.
+
+**Headers**
+```
+Authorization: Bearer <token>
+```
+
+**Request Body**
+```json
+{
+    "title": "My Task",
+    "description": "Details here"
+}
+```
+
+**Success Response**
+```json
+{
+    "message": "Task created successfully"
+}
+```
+
+---
+
+### **PUT `/api/tasks/:id`**
+Update a task.
+
+**Headers**
+```
+Authorization: Bearer <token>
+```
+
+**Request Body**
+```json
+{
+    "title": "Updated title",
+    "description": "Updated description"
+}
+```
+
+---
+
+### **DELETE `/api/tasks/:id`**
+Delete a task.
+
+**Headers**
+```
+Authorization: Bearer <token>
+```
+
+**Success Response**
+```json
+{
+    "message": "Task deleted successfully"
+}
+```
+---
+
 ## 🧪 Postman Testing Guide
 
 1. **Register User**  
@@ -196,4 +374,3 @@ All 8 major test cases passed successfully.
 ## 📩 Author
 Manan Bagadi  
 Assignment for **PrimeTrade.ai**
-

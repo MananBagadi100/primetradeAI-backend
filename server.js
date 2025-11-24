@@ -3,11 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const db = require('./config/db'); // DB connection
+const db = require('./config/db'); // DB connection file
 
 const app = express();
 
-// Middlewares
+// CORS handling
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
@@ -15,12 +15,15 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// Test Route
+//Middlewares 
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
+
+// Testing Route
 app.get("/", (req, res) => {
     res.json({ message: "Backend is running..." });
 });
 
-// Start server
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });

@@ -18,6 +18,7 @@ app.use(cookieParser());
 //Middlewares 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api/tasks', require('./routes/taskRoutes'));
 
 // Testing Route
 app.get("/", (req, res) => {

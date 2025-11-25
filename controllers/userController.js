@@ -2,7 +2,7 @@ const db = require('../config/db');
 
 exports.getProfile = async (req, res) => {
     try {
-        const [user] = await db.query(`SELECT id, name, email FROM users WHERE id = ?`, [
+        const [user] = await db.query(`SELECT id, name, email, city FROM users WHERE id = ?`, [
             req.user.id
         ]);
 
@@ -15,12 +15,12 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, city } = req.body;
 
-        if (!name)
-            return res.status(400).json({ error: "Name is required" });
+        if (!name || !city)
+            return res.status(400).json({ error: "Name and city are required" });
 
-        await db.query(`UPDATE users SET name = ? WHERE id = ?`, [name, req.user.id]);
+        await db.query(`UPDATE users SET name = ?, city = ? WHERE id = ?`, [name, city, req.user.id]);
 
         return res.json({ message: "Profile updated successfully" });
 

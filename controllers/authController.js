@@ -4,9 +4,9 @@ const db = require('../config/db');
 
 exports.registerUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, city, password } = req.body;
 
-        if (!name || !email || !password)
+        if (!name || !email || !city || !password)
             return res.status(400).json({ error: "All fields are required" });
 
         // Check if user exists
@@ -19,8 +19,8 @@ exports.registerUser = async (req, res) => {
 
         // Insert user
         await db.query(
-            `INSERT INTO users(name, email, password) VALUES (?, ?, ?)`,
-            [name, email, hashedPassword]
+            `INSERT INTO users(name, email, city, password) VALUES (?, ?, ?, ?)`,
+            [name, email, city, hashedPassword]
         );
 
         return res.status(201).json({ message: "User registered successfully" });

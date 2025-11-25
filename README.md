@@ -77,6 +77,7 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
+    city VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -168,6 +169,7 @@ Create a new user.
 {
     "name": "Manan",
     "email": "manan@example.com",
+    "city" : "Mumbai",
     "password": "yourpassword"
 }
 ```
@@ -199,7 +201,8 @@ Authenticate user & return JWT token.
     "user": {
         "id": 1,
         "name": "Manan",
-        "email": "manan@example.com"
+        "email": "manan@example.com",
+        "city" : "Mumbai"
     }
 }
 ```
@@ -221,7 +224,8 @@ Authorization: Bearer <token>
 {
     "id": 1,
     "name": "Manan",
-    "email": "manan@example.com"
+    "email": "manan@example.com",
+    "city": "Mumbai"
 }
 ```
 
@@ -238,7 +242,8 @@ Authorization: Bearer <token>
 **Request Body**
 ```json
 {
-    "name": "New Name"
+    "name": "New Name",
+    "city": "New City"
 }
 ```
 
